@@ -17,24 +17,25 @@ const card: React.FC<cardProps> = ({
   score,
   ratings,
 }) => {
+
   return (
     <article key={id}>
-      <Link href={`/${id}`}>
-        <img
-          alt={name}
-          className="mb-3 h-[300px] w-full object-cover"
-          src={image}
-        />
-        <h2 className="inline-flex gap-2 text-lg font-bold">
+      <img
+        alt={name}
+        className="mb-3 h-[300px] w-full object-cover"
+        src={image}
+      />
+      <h2 className="inline-flex gap-2 text-lg font-bold">
+        <Link href={`/${id}`}>
           <h1>{name}</h1>
+        </Link>
+        <small className="inline-flex gap-1">
+          <span>⭐</span>
+          <span>{score}</span>
+          <span className="font-normal opacity-75">({ratings})</span>
+        </small>
+      </h2>
 
-          <small className="inline-flex gap-1">
-            <span>⭐</span>
-            <span>{score}</span>
-            <span className="font-normal opacity-75">({ratings})</span>
-          </small>
-        </h2>
-      </Link>
       <p className="opacity-90">{description}</p>
     </article>
   );
