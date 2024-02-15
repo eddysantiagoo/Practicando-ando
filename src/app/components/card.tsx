@@ -19,7 +19,7 @@ const card: React.FC<cardProps> = ({
 }) => {
 
   return (
-    <article key={id}>
+    <article>
       <img
         alt={name}
         className="mb-3 h-[300px] w-full object-cover"

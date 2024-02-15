@@ -65,6 +65,18 @@ const api = {
 
     return restaurant;
   },
+
+  search: async (query: string = ''): Promise<Restaurant[]> => {
+
+    const results = await api.list().then((restaurants) =>
+
+      restaurants.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(query.toLowerCase()),
+      ),
+    );
+
+    return results;
+  },
 };
 
 export default api;
