@@ -3,7 +3,8 @@ import type {Metadata} from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Restaurancy",
+  title: "Restaurancy - The best restaurants in the world",
+  description: "The best restaurants in the world",
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
