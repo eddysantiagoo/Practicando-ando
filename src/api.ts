@@ -66,16 +66,31 @@ const api = {
     return restaurant;
   },
 
-  search: async (query: string = ''): Promise<Restaurant[]> => {
+  search: async (query: string = ""): Promise<Restaurant[]> => {
+    const results = await api
+      .list()
+      .then((restaurants) =>
+        restaurants.filter((restaurant) =>
+          restaurant.name.toLowerCase().includes(query.toLowerCase()),
+        ),
+      );
 
-    const results = await api.list().then((restaurants) =>
-
-      restaurants.filter((restaurant) =>
-        restaurant.name.toLowerCase().includes(query.toLowerCase()),
-      ),
-    );
+    if (results.length === 0) {
+      api.list();
+    }
 
     return results;
+  },
+
+  fetchDogImage: async (): Promise<string> => {
+    const response = await fetch("https://dog.ceo/api/breeds/image/random");
+    const data = await response.json();
+
+    if (!response.ok || data.status !== "success") {
+      throw new Error("Could not fetch the image");
+    }
+
+    return data.message;
   },
 };
 
